@@ -7,4 +7,5 @@ services:
   - postgresql
 before_script:
   - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'DROP DATABASE IF EXISTS tests;' -U postgres; fi"
-  - psql -U postgres -c 'create database test; create table messages (id SERIAL, message text);' test
+  - psql -U postgres -c 'create database test;'
+  - psql -U postgres -c 'create table messages (id SERIAL, message text);' test
