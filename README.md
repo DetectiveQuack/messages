@@ -1,6 +1,6 @@
 # Messages
 [![Build Status](https://travis-ci.org/DetectiveQuack/messages.svg?branch=master)](https://travis-ci.org/DetectiveQuack/messages)
-
+[![Coverage Status](https://coveralls.io/repos/github/DetectiveQuack/messages/badge.svg?branch=coverage)](https://coveralls.io/github/DetectiveQuack/messages?branch=coverage)
 ## Routes
 ### GET
   https://intense-basin-70441.herokuapp.com/messages/{id}
