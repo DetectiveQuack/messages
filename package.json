@@ -1,7 +1,7 @@
 {
   "name": "messages",
   "version": "1.0.0",
-  "description": "",
+  "description": "Messages web server",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -22,6 +22,10 @@
     "mocha": "^3.4.2"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DetectiveQuack/messages.git"
   }
 }
