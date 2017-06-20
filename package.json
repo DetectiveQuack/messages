@@ -1,0 +1,23 @@
+{
+  "name": "messages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saffaanh Soobratty",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "pg-promise": "^5.9.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-plugin-node": "^5.0.0"
+  },
+  "engines": {
+        "node": ">=8.0.1"
+    }
+}
