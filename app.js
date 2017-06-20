@@ -8,8 +8,8 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-app.use('/message', require('./app/routes/message'));
+app.use('/messages', require('./app/routes/messages'));
 
 app.listen(port, () => {
-  console.log(`App is listening on port ${port}`);
+  console.log(`App is listening on port ${port}`); //eslint-disable-line no-console
 });

@@ -1,8 +1,8 @@
-const pgp = require('pg-promise');
-const local = require('../config/local.json');
+/**
+ * DB configuration, uses environment variable for postgres db connection
+ */
+const pgp = require('pg-promise')({});
 
-const cn = local[process.env.NODE_ENV].server;
-
-const db = pgp(cn);
+const db = pgp(process.env.DATABASE_URL);
 
 module.exports = db;
