@@ -18,7 +18,7 @@ router.get('/:id', (req, res, next) => {
     return next();
   }
 
-  res.status(500).send('Invalid id!!');
+  res.status(400).send('Invalid id!!');
 }, (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -29,7 +29,7 @@ router.get('/:id', (req, res, next) => {
       res.send(data.message);
     })
     .catch(() => {
-      res.send(`Message does not exist with id: ${id}`);
+      res.status(400).send(`Message does not exist with id: ${id}`);
     });
 });
 
@@ -44,7 +44,7 @@ router.post('/', bodyParser.urlencoded({ extended: true }), (req, res) => {
   const keys = Object.keys(req.body || {});
 
   if (!keys.length) {
-    return res.status(500).json({ error: 'Message not found in body' });
+    return res.status(400).json({ error: 'Message not found in body' });
   }
 
   // At this point we know there is at least one
@@ -56,7 +56,7 @@ router.post('/', bodyParser.urlencoded({ extended: true }), (req, res) => {
     .then((id) => res.json({ id }))
     .catch(() => {
       // Hard code to not show sensitive database information on error
-      res.status(500).json({ error: 'Oops something went wrong...' });
+      res.status(400).json({ error: 'Oops something went wrong...' });
     });
 
 });

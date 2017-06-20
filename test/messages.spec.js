@@ -30,11 +30,29 @@ describe('Messages', () => {
         });
     });
 
-    it('should return a 500 with a message if id is not an int', (done) => {
+    it('should fail with a 400 and a message if id can not find message', (done) => {
+      const message = 'test';
+
+      db.one('INSERT INTO messages (message) VALUES($1) RETURNING id', [message])
+        .then((data) => {
+          const invalidId = data.id + 1;
+          chai.request(server)
+            .get(`/messages/${invalidId}`)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.should.have.header('content-type', /text\/plain/);
+              chai.expect(res.text).to.equal(`Message does not exist with id: ${invalidId}`);
+              done();
+            });
+
+        });
+    });
+
+    it('should return a 400 with a message if id is not an number', (done) => {
       chai.request(server)
         .get(`/messages/testing123`)
         .end((err, res) => {
-          res.should.have.status(500);
+          res.should.have.status(400);
           chai.expect(res.text).to.equal('Invalid id!!');
           done();
         });
@@ -60,14 +78,14 @@ describe('Messages', () => {
         });
     });
 
-    it('should send a 500 and an error message is no message is sent', (done) => {
+    it('should send a 400 and an error message is no message is sent', (done) => {
       chai.request(server)
         .post('/messages')
         .set({ 'Content-Type': /application\/x-www-form-urlencoded/ })
         .type('form')
         .send('')
         .end((err, res) => {
-          res.should.have.status(500);
+          res.should.have.status(400);
           res.should.have.header('content-type', /application\/json/);
           chai.expect(res.body.error).to.be.an('string');
           done();

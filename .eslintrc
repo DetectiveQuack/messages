@@ -16,6 +16,15 @@
       "error",
       "module.exports"
     ],
-    "semi": "error"
+    "semi": "error",
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": [
+          "chai",
+          "chai-http"
+        ]
+      }
+    ]
   }
 }
