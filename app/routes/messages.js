@@ -41,7 +41,7 @@ router.get('/:id', (req, res, next) => {
  */
 router.post('/', bodyParser.urlencoded({ extended: true }), (req, res) => {
   // data comes as { 'message': '' }
-  const keys = Object.keys(req.body || {});
+  const keys = Object.keys(req.body);
 
   if (!keys.length) {
     return res.status(400).json({ error: 'Message not found in body' });
