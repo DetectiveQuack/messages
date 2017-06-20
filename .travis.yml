@@ -1,11 +1,19 @@
-language: "node_js"
+language: node_js
 node_js:
-  - "8"
+- '8'
 cache:
-  - node_modules
+- node_modules
 services:
-  - postgresql
+- postgresql
 before_script:
-  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'DROP DATABASE IF EXISTS tests;' -U postgres; fi"
-  - psql -U postgres -c 'create database test;'
-  - psql -U postgres -c 'create table messages (id SERIAL, message text);' test
+- sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'DROP DATABASE IF EXISTS tests;' -U
+  postgres; fi"
+- psql -U postgres -c 'create database test;'
+- psql -U postgres -c 'create table messages (id SERIAL, message text);' test
+deploy:
+  provider: heroku
+  api_key:
+    secure: kWSKV8vjb2SGXRBFz1sHCX4WQzPI2OIzSHoWS8mvQOswjm5kiJmsVVgME7pviD4CKrO+XmND25p8udYioTOnPDAseKPOPs7jgJIneI4Nhekre6M2g3JkZseqAF/pGUpzWrritzkwrsPQSqib4AVj9KFRow40AuxN+eBDHTlZlpA7kOMq4L50+Kh3GQ5QNOErPSiOha6q/Op+vnsUcxj+1YjQHWgyyIntaeoukcJFWUlagtErofoXziVFNDQDW6V45mIrYnulkpnwMk7fMgYtGuIyFa6D44PIHlQ+2e5pr8ZmOzJG6UhnV0vNXg7qbp7mpbGVIGzbuK2lz6SIFxMI53vb3rGIvBRVxVo8Dobfo5Kw3wHAtNHhfxTS56qy1UDbBGR5E0CynNViNxnxxnY+BrnA4W32efIz/mkRlpQ/fXX79oC7buXqvvU7i0/YR4pvzluJLVzS4vaxJL2QLakRP+igEqp9u3nCaxWJusl8QwhbtmKM0mpzi3sUxLKpp1fbSXz/opFHPoVipjjHSTUy6aQq41Nirty4qnhUi6KCKu/cEr5brmcxMBY9WfaPv5z4UGG3ywBULj8eaV4RYNg0BQfUW1C1F72g2TJw9muivyeDIkUlVHijvFnkbVsXmDM9HWIcsB0LDmpvtJx4pql/CCzAv8OtmjEjcnJJfN4LCuw=
+  app: messages
+  on:
+    repo: DetectiveQuack/messages

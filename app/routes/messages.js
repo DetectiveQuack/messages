@@ -44,7 +44,7 @@ router.post('/', bodyParser.urlencoded({ extended: true }), (req, res) => {
   const keys = Object.keys(req.body || {});
 
   if (!keys.length) {
-    throw new Error('No message found');
+    return res.status(500).json({ error: 'Message not found in body' });
   }
 
   // At this point we know there is at least one
@@ -56,7 +56,7 @@ router.post('/', bodyParser.urlencoded({ extended: true }), (req, res) => {
     .then((id) => res.json({ id }))
     .catch(() => {
       // Hard code to not show sensitive database information on error
-      res.json({ error: 'Oops something went wrong...' });
+      res.status(500).json({ error: 'Oops something went wrong...' });
     });
 
 });
