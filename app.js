@@ -13,3 +13,5 @@ app.use('/messages', require('./app/routes/messages'));
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`); //eslint-disable-line no-console
 });
+
+module.exports = app;

@@ -18,7 +18,7 @@ router.get('/:id', (req, res, next) => {
     return next();
   }
 
-  throw new Error('Invalid id');
+  res.status(500).send('Invalid id!!');
 }, (req, res) => {
   const id = parseInt(req.params.id, 10);
 
@@ -41,7 +41,7 @@ router.get('/:id', (req, res, next) => {
  */
 router.post('/', bodyParser.urlencoded({ extended: true }), (req, res) => {
   // data comes as { 'message': '' }
-  const keys = Object.keys(req.body);
+  const keys = Object.keys(req.body || {});
 
   if (!keys.length) {
     throw new Error('No message found');

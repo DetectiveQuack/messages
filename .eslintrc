@@ -6,6 +6,11 @@
     "eslint:recommended",
     "plugin:node/recommended"
   ],
+  "globals": {
+    "describe": true,
+    "it": true,
+    "beforeEach": true
+  },
   "rules": {
     "node/exports-style": [
       "error",
