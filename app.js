@@ -10,6 +10,10 @@ const port = process.env.PORT || 3000;
 
 app.use('/messages', require('./app/routes/messages'));
 
+app.all('/', (req, res) => {
+  res.send('Welcome to messages!!');
+});
+
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`); //eslint-disable-line no-console
 });
