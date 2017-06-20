@@ -22,7 +22,8 @@
       {
         "allowModules": [
           "chai",
-          "chai-http"
+          "chai-http",
+          "sinon"
         ]
       }
     ]

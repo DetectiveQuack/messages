@@ -1,4 +1,5 @@
 const chai = require('chai');
+const sinon = require('sinon');
 
 const db = require('../app/db');
 const server = require('../app');
@@ -91,5 +92,25 @@ describe('Messages', () => {
           done();
         });
     });
+
+    it('should send a 400 with a generic error message if insert fails', (done) => {
+      const stub = sinon.stub(db, 'one').resolves();
+      stub.rejects();
+
+      chai.request(server)
+        .post('/messages')
+        .set({ 'Content-Type': /application\/x-www-form-urlencoded/ })
+        .type('form')
+        .send('Message')
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.should.have.header('content-type', /application\/json/);
+          chai.expect(res.body.error).to.be.an('string');
+          stub.restore();
+          done();
+        });
+
+    });
+
   });
 });
